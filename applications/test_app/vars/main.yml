@@ -1,0 +1,12 @@
+---
+#
+# application variables
+#   These augment and override variables defined in:
+#     automation/roles/application/vars/main.yml
+#  
+#   Branch specific variables can be specified in:
+#     automation/applications/<application>/vars/<branch>.yml
+#
+
+application_version: 0.0
+shared_var: 'test_app var'

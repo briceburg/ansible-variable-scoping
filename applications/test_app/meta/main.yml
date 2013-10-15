@@ -1,0 +1,5 @@
+---
+dependencies:
+  - { role: application, namespace: 'test_app' }
+  - { role: '../services/test_service', namespace: 'test_service' }
+  

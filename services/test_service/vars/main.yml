@@ -1,0 +1,9 @@
+---
+#
+# service variables
+#   These augment and override variables defined in:
+#     automation/roles/service/vars/main.yml
+#
+
+service_version: 0.0
+shared_var: 'test_service var'

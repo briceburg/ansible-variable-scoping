@@ -1,0 +1,35 @@
+---
+
+##
+# Application Playbook for the preparation + deployment of cicayda applications.
+#   - typically executed via applications/deploy.sh | applications/prepare.sh
+#   - standalone example usage: 
+#      [prepare+deploy] repo_home$ ansible-playbook -i hosts/tn.inventory application.yml --extra-vars="host_group=irc namespace=blubot git_branch=master"
+#      [prepare] repo_home$ ansible-playbook -i hosts/tn.inventory application.yml --tags="prepare"
+#      [deploy] repo_home$ ansible-playbook -i hosts/tn.inventory application.yml --tags="deploy"
+##
+
+- name: "deploy application {{ namespace }}"
+  hosts: "{{ host_group }}"
+  remote_user: "root"
+  
+  ###
+  # Prompt for required vars. Usually passed as extravars
+  vars_prompt:
+    host_group: "[ host_group ] host or group to run playbook against"
+    namespace: "[ namespace ] the application to deploy"
+    git_branch: "[ git_branch ] master|develop|etc"
+    
+  vars:
+    branch: >
+      {{ lookup('pipe','echo "' + git_branch + '" | sed "s/[^a-zA-Z0-9\_\-]/_/g"') }}
+     
+  vars_files:
+    - ["applications/{{ namespace }}/vars/{{ branch }}.yml", "hosts/host_vars/_.yml"]
+    
+  roles:
+    - application
+    - "applications/{{ namespace }}"
+    
+
+  
