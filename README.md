@@ -1,0 +1,2 @@
+ansible-variable-scoping
+========================
