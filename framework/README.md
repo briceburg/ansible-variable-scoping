@@ -1,15 +1,16 @@
 ansible-variable-scoping
 ========================
 
+Framework example.
 
 **TL;DR**
 
 1. The applications/test_app role depends on the services/test_service role
-  * https://github.com/briceburg/ansible-variable-scoping/blob/master/applications/test_app/meta/main.yml
+  * https://github.com/briceburg/ansible-variable-scoping/blob/master/framework/applications/test_app/meta/main.yml
 
 1. Each role provides a unique value for a variable named 'shared_var'
-  * https://github.com/briceburg/ansible-variable-scoping/blob/master/applications/test_app/vars/main.yml
-  * https://github.com/briceburg/ansible-variable-scoping/blob/master/services/test_service/vars/main.yml )
+  * https://github.com/briceburg/ansible-variable-scoping/blob/master/framework/applications/test_app/vars/main.yml
+  * https://github.com/briceburg/ansible-variable-scoping/blob/master/framework/services/test_service/vars/main.yml )
 
 1. When the services/test_service role is executed (aka **"active"**), the output of shared_var shows the value defined by the applications/test_app role. This is contrary to expected/documented behavior (?), where we expect the output to match the value defined by the active role in case of a variable name collision. 
 

@@ -1,0 +1,8 @@
+---
+- name: "test variable scoping"
+  hosts: "localhost"
+
+  roles:
+    - test_app 
+
+  

@@ -1,0 +1,12 @@
+---
+# test_service service
+
+
+#- name: print service_name
+#  action: debug msg="{{ service_name }}"
+  
+- name: print service_version
+  action: debug msg="{{ service_version }}"
+  
+- name: print shared_var
+  action: debug msg="{{ shared_var }}"
