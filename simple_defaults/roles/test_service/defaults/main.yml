@@ -1,0 +1,5 @@
+---
+# test_service service
+
+service_version: 0.0
+shared_var: 'test_service var'
