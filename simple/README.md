@@ -17,11 +17,14 @@ Simple example.
 
 **Output**
 
-You can test be checking out and executing
+You can test be checking out and executing.
 
 ```
 ansible-playbook -i hosts playbook.yml
 ```
+
+Notice that we expect an output of 'test_service var' in the second task, but get 'test_app var' instead!
+
 
 ```
 PLAY [test variable scoping] ************************************************** 
