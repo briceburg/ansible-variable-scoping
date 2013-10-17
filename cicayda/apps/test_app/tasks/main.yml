@@ -1,0 +1,11 @@
+---
+# test_app application
+
+#- name: print application_name
+#  action: debug msg="{{ application_name }}"
+  
+- name: print application_name and application_version (expect test_app, 3.0)
+  action: debug msg="{{application_name}}, {{ application_version }}"
+  
+- name: print test_app port (expect 8080)
+  action: debug msg="{{ port }}"

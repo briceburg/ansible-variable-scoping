@@ -1,0 +1,12 @@
+---
+# nested_service service
+
+
+#- name: print service_name
+#  action: debug msg="{{ service_name }}"
+  
+- name: print service_name and service_version (expect nested_service, 8.0)
+  action: debug msg="{{ service_name }}, {{ service_version }}"
+  
+- name: print nested_service port (expect 9000)
+  action: debug msg="{{ port }}"

@@ -1,0 +1,5 @@
+---
+namespace: test_app
+
+application_version: 3.0
+port: 8080
