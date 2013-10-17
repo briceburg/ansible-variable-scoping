@@ -4,8 +4,8 @@
 #- name: print application_name
 #  action: debug msg="{{ application_name }}"
   
-- name: print application_version
+- name: print test_app application_version
   action: debug msg="{{ application_version }}"
   
-- name: print shared_var [[ EXPECT > 'test_app var' ]]
-  action: debug msg="{{ shared_var }}"
+- name: print test_app port (expect 8080)
+  action: debug msg="{{ port }}"

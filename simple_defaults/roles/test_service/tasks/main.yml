@@ -8,5 +8,5 @@
 - name: print service_version
   action: debug msg="{{ service_version }}"
   
-- name: print shared_var  [[ EXPECT > 'test_service var' ]]
-  action: debug msg="{{ shared_var }}"
+- name: print test_service port (expect 80)
+  action: debug msg="{{ port }}"

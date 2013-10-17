@@ -25,10 +25,10 @@ ok: [localhost] => {
     "msg": "0.0"
 }
 
-TASK: [test_service | print shared_var  [[ EXPECT > 'test_service var' ]]] **** 
+TASK: [test_service | print test_service port (expect 80)] ******************** 
 ok: [localhost] => {
     "item": "", 
-    "msg": "test_service var"
+    "msg": "80"
 }
 
 TASK: [test_app | print application_version] ********************************** 
@@ -37,10 +37,10 @@ ok: [localhost] => {
     "msg": "0.0"
 }
 
-TASK: [test_app | print shared_var [[ EXPECT > 'test_app var' ]]] ************* 
+TASK: [test_app | print test_app port (expect 8080)] ************************** 
 ok: [localhost] => {
     "item": "", 
-    "msg": "test_app var"
+    "msg": "8080"
 }
 
 PLAY RECAP ******************************************************************** 
