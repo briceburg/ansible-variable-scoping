@@ -15,9 +15,11 @@ Simple example.
 1. When the test_service role is executed (aka **"active"**), the output of port shows the value defined by the test_app role. **This is contrary to expected/documented behavior (?), where we expect the output to match the value defined by the active role in case of a variable name collision.** 
 
 
+First task in output shows error.
+
 **Output**
 
-You can test be checking out and executing.
+Test is executed via:
 
 ```
 ansible-playbook -i hosts playbook.yml
@@ -32,31 +34,19 @@ PLAY [test variable scoping] **************************************************
 GATHERING FACTS *************************************************************** 
 ok: [localhost]
 
-TASK: [test_service | print service_version] ********************************** 
+TASK: [test_service | debug msg="test_service - port - expected 80, got 8080"] *** 
 ok: [localhost] => {
     "item": "", 
-    "msg": "0.0"
+    "msg": "test_service - port - expected 80, got 8080"
 }
 
-TASK: [test_service | print test_service port (expect 80)] ******************** 
+TASK: [test_app | debug msg="test_app - port - expected 8080, got 8080"] ****** 
 ok: [localhost] => {
     "item": "", 
-    "msg": "8080"
-}
-
-TASK: [test_app | print test_app application_version] ************************* 
-ok: [localhost] => {
-    "item": "", 
-    "msg": "0.0"
-}
-
-TASK: [test_app | print test_app port (expect 8080)] ************************** 
-ok: [localhost] => {
-    "item": "", 
-    "msg": "8080"
+    "msg": "test_app - port - expected 8080, got 8080"
 }
 
 PLAY RECAP ******************************************************************** 
-localhost                  : ok=5    changed=0    unreachable=0    failed=0  
+localhost                  : ok=3    changed=0    unreachable=0    failed=0 
 
 ```

@@ -3,7 +3,9 @@ ansible-variable-scoping
 
 Example that uses role defaults/main.yml instead of vars/main.yml
 
+
 Using defaults/main.yml vs. vars/main.yml works as documented; meaning roles have their variable definitions take precedence when activated by the dependency mechanism.  If, however, a role uses `include`; the included tasks will use variable definitions from a different role.
+
 
 This is covered in this example; see the output of the second task below.
 

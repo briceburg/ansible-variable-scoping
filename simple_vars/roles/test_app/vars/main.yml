@@ -1,0 +1,4 @@
+---
+# test_app role vars
+
+port: 8080

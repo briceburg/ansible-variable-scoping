@@ -1,0 +1,4 @@
+---
+# test_service role vars
+
+port: 80

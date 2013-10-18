@@ -1,5 +1,0 @@
----
-# test_service service
-
-service_version: 0.0
-port: 80
