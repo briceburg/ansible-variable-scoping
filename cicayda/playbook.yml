@@ -1,8 +1,0 @@
----
-- name: "test variable scoping (using defaults vs. vars)"
-  hosts: "localhost"
-
-  roles:
-    - { role: "apps/test_app" }
-
-  

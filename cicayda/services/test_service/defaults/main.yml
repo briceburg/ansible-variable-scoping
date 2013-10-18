@@ -1,6 +1,0 @@
----
-# test_service service
-namespace: 'test_service'
-
-service_version: 1.0
-port: 80

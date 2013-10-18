@@ -1,6 +1,0 @@
----
-# nested_service service
-namespace: 'nested_service'
-
-service_version: 8.0
-port: 9000
