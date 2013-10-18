@@ -1,4 +1,4 @@
 ---
+# test_nested_service role included task(s)
 
-- name: FROM_INCLUDE > print nested_service port (expect 9000)
-  action: debug msg="{{ port }}"
+- debug: msg="test_nested_service INCLUDE - port - expected 9000, got {{ port }}"

@@ -1,13 +1,16 @@
 ansible-variable-scoping
 ========================
 
-Simple example, but using defaults/_main.yml  vs. vars/_main.yml
+Example that uses role defaults/main.yml instead of vars/main.yml
 
-1. Everything works as expected EXCEPT when we include a task file (in the test_nested_service). The included task outputs the wrong variable definition.
+Using defaults/main.yml vs. vars/main.yml works as documented; meaning roles have their variable definitions take precedence when activated by the dependency mechanism.  If, however, a role uses `include`; the included tasks will use variable definitions from a different role.
+
+This is covered in this example; see the output of the second task below.
+
 
 **Output**
 
-You can test be checking out and executing
+Test is executed via:
 
 ```
 ansible-playbook -i hosts playbook.yml
@@ -19,48 +22,27 @@ PLAY [test variable scoping (using defaults vs. vars)] ************************
 GATHERING FACTS *************************************************************** 
 ok: [localhost]
 
-TASK: [test_nested_service | print nested_service service_version (expect 9.0)] *** 
+TASK: [test_nested_service | debug msg="test_nested_service port - expected 9000, got {{port}}"] *** 
 ok: [localhost] => {
     "item": "", 
-    "msg": "9.0"
+    "msg": "test_nested_service port - expected 9000, got 9000"
 }
 
-TASK: [test_nested_service | print nested_service port (expect 9000)] ********* 
+TASK: [test_nested_service | debug msg="test_nested_service INCLUDE - port - expected 9000, got {{port}}"] *** 
 ok: [localhost] => {
     "item": "", 
-    "msg": "9000"
+    "msg": "test_nested_service INCLUDE - port - expected 9000, got 8080"
 }
 
-TASK: [test_nested_service | FROM_INCLUDE > print nested_service port (expect 9000)] *** 
+TASK: [test_service | debug msg="test_service - port - expected 80, got {{port}}"] *** 
 ok: [localhost] => {
     "item": "", 
-    "msg": "8080"
+    "msg": "test_service - port - expected 80, got 80"
 }
 
-TASK: [test_service | print test_service service_version (expect 0.0)] ******** 
+TASK: [test_app | debug msg="test_app - port - expected 8080, got {{port}}"] *** 
 ok: [localhost] => {
     "item": "", 
-    "msg": "0.0"
+    "msg": "test_app - port - expected 8080, got 8080"
 }
-
-TASK: [test_service | print test_service port (expect 80)] ******************** 
-ok: [localhost] => {
-    "item": "", 
-    "msg": "80"
-}
-
-TASK: [test_app | print application_version] ********************************** 
-ok: [localhost] => {
-    "item": "", 
-    "msg": "0.0"
-}
-
-TASK: [test_app | print test_app port (expect 8080)] ************************** 
-ok: [localhost] => {
-    "item": "", 
-    "msg": "8080"
-}
-
-PLAY RECAP ******************************************************************** 
-localhost                  : ok=8    changed=0    unreachable=0    failed=0
 ```

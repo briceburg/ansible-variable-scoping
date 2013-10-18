@@ -1,11 +1,4 @@
 ---
-# test_app application
+# test_app role tasks
 
-#- name: print application_name
-#  action: debug msg="{{ application_name }}"
-  
-- name: print application_version
-  action: debug msg="{{ application_version }}"
-  
-- name: print test_app port (expect 8080)
-  action: debug msg="{{ port }}"
+- debug: msg="test_app - port - expected 8080, got {{ port }}"

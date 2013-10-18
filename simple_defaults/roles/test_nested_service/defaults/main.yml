@@ -1,5 +1,4 @@
 ---
-# test_nested_service service
+# test_nested_service role vars
 
-service_version: 9.0
 port: 9000
