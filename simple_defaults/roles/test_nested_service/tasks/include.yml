@@ -1,0 +1,4 @@
+---
+
+- name: FROM_INCLUDE > print nested_service port (expect 9000)
+  action: debug msg="{{ port }}"

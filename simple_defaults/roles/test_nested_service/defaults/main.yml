@@ -1,0 +1,5 @@
+---
+# test_nested_service service
+
+service_version: 9.0
+port: 9000

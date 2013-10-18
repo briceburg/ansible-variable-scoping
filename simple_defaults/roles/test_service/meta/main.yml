@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: 'test_nested_service' }
+  
