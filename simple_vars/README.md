@@ -38,11 +38,6 @@ failed: [localhost] => {"failed": true, "failed_when_result": true, "item": "", 
 msg: beta role (tasks/main.yml) - port - expected beta-port, got alpha-port
 ...ignoring
 
-TASK: [beta | debug msg="beta role (tasks/include.yml) - port - expected beta-port, got alpha-port"] *** 
-failed: [localhost] => {"failed": true, "failed_when_result": true, "item": "", "verbose_always": true}
-msg: beta role (tasks/include.yml) - port - expected beta-port, got alpha-port
-...ignoring
-
 TASK: [alpha | debug msg="alpha role (tasks/main.yml) - port - expected alpha-port, got alpha-port"] *** 
 ok: [localhost] => {
     "failed": false, 
@@ -52,6 +47,6 @@ ok: [localhost] => {
 }
 
 PLAY RECAP ******************************************************************** 
-localhost                  : ok=4    changed=0    unreachable=0    failed=0 
+localhost                  : ok=3    changed=0    unreachable=0    failed=0
 ```
 
