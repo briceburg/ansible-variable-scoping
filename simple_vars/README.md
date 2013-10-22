@@ -9,7 +9,7 @@ Description
 
 1. alpha role depends on beta role
 
-1. Each role provides a unique value for a variable named 'port'
+1. Each role provides a unique value for a variable named 'port' <role>/vars/main.yml
 
 1. When beta role is executed (aka **"active"**) via the role dependency mechanism, the role uses variable definitions from alpha role instead of its own definitions (roles/beta/vars/main.yml). 
 

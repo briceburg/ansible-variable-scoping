@@ -1,0 +1,5 @@
+---
+# alpha role meta
+dependencies:
+  - { role: 'beta' }
+  

@@ -1,0 +1,8 @@
+---
+# beta role tasks
+
+- debug: msg="beta role (tasks/main.yml) - port - expected beta-port, got {{ port }}"
+  failed_when: "port != 'beta-port'"
+  ignore_errors: True
+
+- { include: "include.yml"}
