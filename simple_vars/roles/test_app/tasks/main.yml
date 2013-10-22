@@ -1,4 +1,0 @@
----
-# test_app role tasks
-
-- debug: msg="test_app - port - expected 8080, got {{ port }}"

@@ -1,31 +1,30 @@
 ansible-variable-scoping
 ========================
 
-Simple example.
+- ansible -devel commit https://github.com/ansible/ansible/commit/214b0b052c3d54b58a531b0f7fb401ec3c0229f5
 
-**TL;DR**
+Description
+===
 
-1. The test_app role depends on the test_service role
-  * https://github.com/briceburg/ansible-variable-scoping/blob/master/simple_vars/roles/test_app/meta/main.yml
+
+1. alpha role depends on beta role
 
 1. Each role provides a unique value for a variable named 'port'
-  * https://github.com/briceburg/ansible-variable-scoping/blob/master/simple_vars/roles/test_app/vars/main.yml
-  * https://github.com/briceburg/ansible-variable-scoping/blob/master/simple_vars/roles/test_service/vars/main.yml
 
-1. When the test_service role is executed (aka **"active"**), the output of port shows the value defined by the test_app role. **This is contrary to expected/documented behavior (?), where we expect the output to match the value defined by the active role in case of a variable name collision.** 
+1. When beta role is executed (aka **"active"**) via the role dependency mechanism, the role uses variable definitions from alpha role instead of its own definitions (roles/beta/vars/main.yml). 
 
+1. It has been noted that active roles use their variable definitions [unless higher precedent variables are passed via --extra-vars, or variable definitions in the base playbook]
+  * "... within a role, the variables in roles/y/vars/main.yml are guaranteed to be applied to that specific role, just as if they were parameters explicitly passed to the role." ( https://groups.google.com/d/msg/ansible-project/0JIrNlnRXuI/tx1-inKYoUQJ )
+  
 
-First task in output shows error.
-
-**Output**
+Output
+===
 
 Test is executed via:
 
 ```
 ansible-playbook -i hosts playbook.yml
 ```
-
-Notice that we expect an output of 'test_service var' in the second task, but get 'test_app var' instead!
 
 
 ```
@@ -34,19 +33,24 @@ PLAY [test variable scoping] **************************************************
 GATHERING FACTS *************************************************************** 
 ok: [localhost]
 
-TASK: [test_service | debug msg="test_service - port - expected 80, got 8080"] *** 
-ok: [localhost] => {
-    "item": "", 
-    "msg": "test_service - port - expected 80, got 8080"
-}
+TASK: [beta | debug msg="beta role (tasks/main.yml) - port - expected beta-port, got alpha-port"] *** 
+failed: [localhost] => {"failed": true, "failed_when_result": true, "item": "", "verbose_always": true}
+msg: beta role (tasks/main.yml) - port - expected beta-port, got alpha-port
+...ignoring
 
-TASK: [test_app | debug msg="test_app - port - expected 8080, got 8080"] ****** 
+TASK: [beta | debug msg="beta role (tasks/include.yml) - port - expected beta-port, got alpha-port"] *** 
+failed: [localhost] => {"failed": true, "failed_when_result": true, "item": "", "verbose_always": true}
+msg: beta role (tasks/include.yml) - port - expected beta-port, got alpha-port
+...ignoring
+
+TASK: [alpha | debug msg="alpha role (tasks/main.yml) - port - expected alpha-port, got alpha-port"] *** 
 ok: [localhost] => {
+    "failed": false, 
+    "failed_when_result": false, 
     "item": "", 
-    "msg": "test_app - port - expected 8080, got 8080"
+    "msg": "alpha role (tasks/main.yml) - port - expected alpha-port, got alpha-port"
 }
 
 PLAY RECAP ******************************************************************** 
-localhost                  : ok=3    changed=0    unreachable=0    failed=0 
-
+localhost                  : ok=4    changed=0    unreachable=0    failed=0 
 ```

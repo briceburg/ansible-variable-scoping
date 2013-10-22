@@ -1,4 +1,0 @@
----
-# test_service role tasks
-
-- debug: msg="test_service - port - expected 80, got {{ port }}"

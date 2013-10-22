@@ -1,6 +1,0 @@
----
-# test_app role meta
-
-dependencies:
-  - { role: 'test_service' }
-  

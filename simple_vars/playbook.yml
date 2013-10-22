@@ -3,6 +3,6 @@
   hosts: "localhost"
 
   roles:
-    - test_app 
+    - alpha
 
   

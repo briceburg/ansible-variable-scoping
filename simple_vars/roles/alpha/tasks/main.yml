@@ -1,0 +1,6 @@
+---
+# alpha role tasks
+
+- debug: msg="alpha role (tasks/main.yml) - port - expected alpha-port, got {{ port }}"
+  failed_when: "port != 'alpha-port'"
+  ignore_errors: True
